@@ -22,7 +22,17 @@ def ask_for_choice():
         print("This is not a number.")
 
 
+containers = set()
+brand = ""
+product_name = ""
+shipping = ""
+
+
 def switch_case():
+    global containers
+    global brand
+    global product_name
+    global shipping
     input_choice = ask_for_choice()
     if input_choice == 1:
         # open connection
@@ -51,10 +61,11 @@ def switch_case():
 
                 shipping_container = container.findAll("li", {"class": "price-ship"})
                 shipping = shipping_container[0].text.strip()
-                # ask for continue
-                input_continue = input('want to continue Y/N?: ')
-                if input_continue == 'Y':
-                    switch_case()
+
+            # ask for continue
+            input_continue = input('want to continue Y/N?: ')
+            if input_continue == 'Y':
+                switch_case()
         except NameError:
             print('First u need to run step 1.')
             input_choice = ask_for_choice()
@@ -85,16 +96,17 @@ def switch_case():
             input_continue = input('want to continue Y/N?: ')
             if input_continue == 'Y':
                 switch_case()
-        except:
+        except NameError:
             print('First u need to run step 1 and step 2.')
             switch_case()
 
     elif input_choice == 4:
-        #erase data
+        # erase data
         print('data erased.')
 
     else:
         print('U can only choose from options 1 to 5.')
 
-#run
+
+# run
 switch_case()
